@@ -35,7 +35,7 @@ loading:               Loading…
 redirecting:           Redirecting…
 
 continue_reading:      >
-  Continue reading <!--post_title-->
+  继续阅读 <!--post_title-->
 
 cookies_banner:
   text:                >
@@ -138,3 +138,5 @@ resume:
     languages:         icon-bubbles
     skills:            icon-wrench
     interests:         icon-heart
+
+blog_url: https://github.com/Soo-Q6/Pic_url/raw/master/blog/
