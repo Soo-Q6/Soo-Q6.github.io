@@ -1,12 +1,12 @@
 ---
 layout: list
-title: Loading
+title: 垃圾桶
 slug: loading
-menu: true
+menu: false
 order: 2
 description: >
-  nothing...
-  Open `_featured_tags/loading.md` to edit this text.
+  It was not highlighting what was wrong in my life, <br>
+  but it was showing me like how good my life could be if I just care.
 accent_color: rgb(38,139,210)
 accent_image:
   background: rgb(32,32,32)

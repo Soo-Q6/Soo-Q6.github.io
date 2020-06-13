@@ -1,9 +1,10 @@
 ---
 layout: list
-title: Blog
+title: 个人博客
 slug: blog
 menu: true
 order: 1
 description: >
-  Open `_featured_tags/blog.md` to edit this text.
+  最近一个人在上海实习，除了工作好像就没什么有趣的事情了，所以开始开始写点东西。这个博客会不定期更新一些东西，都是随便写写的，想来也不会有其他人来关注，就当是消磨时间吧。    
+  ----2019.09.21
 ---

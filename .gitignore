@@ -50,5 +50,4 @@ _zip
 docs
 _site
 #<removed>
-blog/_posts/*
-loading/_posts/*
+#loading/_posts/*

@@ -5,7 +5,7 @@
 {% assign end_with = include.end_with %}
 
 {% assign content = '' %}
-{{tags}}
+
 {% if tags.size > 0 %}
   {% assign content = start_with %}
   {% for tag_slug in tags %}
@@ -16,7 +16,7 @@
     {% if tag %}
       {% capture content_temp %}{{ content }}<a href="{{ tag.url | relative_url }}" class="flip-title">{{ tag.title }}</a>{{ iter_separator }}{% endcapture %}
     {% else %}
-      {% capture content_temp %}{{ content }}<span>{{ tag_slug | capitalize }}</span>{{ iter_separator }}{% endcapture %}
+      {% capture content_temp %}{{ content }}<span>{{ tag_slug }}</span>{{ iter_separator }}{% endcapture %}
     {% endif %}
 
     {% assign content = content_temp %}
