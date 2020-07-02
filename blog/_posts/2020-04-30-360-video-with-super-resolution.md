@@ -21,11 +21,12 @@ PARSEC主要分为两部分，一部分解决超分网络效率低下的问题�
 所以超分这部分就是每一个segment都对应一个网络，然后使用当前segment的tiles来训练这个超分网络，该网络是和segment一起传输到客户端。
 ![]({{site.data.strings.blog_url}}sr-arch.png)
 
-上图是超分网络的结构，首先从像素中提取视频的高维度特征，然后中间的卷积层用来学习原始视频中确实的细节，最后deconvolution层将低分辨率视频映射到高分辨率视频。
+上图是超分网络的结构，首先从像素中提取视频的高维度特征，然后中间的卷积层用来学习原始视频中缺失的细节，最后deconvolution层将低分辨率视频映射到高分辨率视频。网络的层数是取决于视频的长度和视频重建的目标质量(训练过程中，会手动调整网络的层数，使得网络可以重建成不同分辨率的视频)。训练过程中使用**PSNR**作为损失函数。
 
 # neural-aware ABR algorithm
 
 ![]({{site.data.strings.blog_url}}parsec-arch.png)
+
 这一部分，主要任务就是：<br>
 1. 决定直接从服务器抓取的tiles
 2. 决策被抓取的tiles的码率
@@ -33,10 +34,15 @@ PARSEC主要分为两部分，一部分解决超分网络效率低下的问题�
 
 ABR算法除了需要视频的的信息(包括segments，tiles等信息)，还需要视口预测的概率模型，以及可用的网络能力和客户端的计算能力。其中tiles的状态有(fetch, generate, miss)。<br>
 
+这部分是很假的，并不是所谓的"neural-aware":
+
+> The client makes the decision about which tiles to fetch or generate using an ABR algorithm that is ‘neural-aware,’ i.e., understands  the tradeoffs between the two methods.
+
 ## viewport prediction
 视口预测主要就是根据：
 1. 离线的视频数据分析
 2. 用户的头部追踪traces<br>
+
 来预测接下来的用户行为。这里主要的方法是使用[论文](https://dl.acm.org/doi/pdf/10.1145/3083165.3083180)。
 
 ## QoE模型
@@ -83,9 +89,11 @@ $$
 这样就可以保证每一次选择都是最优的...
 
 # 总结
-文章的思路就是窄带高清的思路，借用超分网络来重构视频，使得系统可以尽可能的减少数据的传输量。文章主要的贡献就是：<br>
+文章的思路就是窄带高清的思路，借用超分网络来重构视频，使得系统可以尽可能的减少数据的传输量。通过考虑客户端的网络承载能力和计算能力，基于viewport预测的概率模型，贪心地计算出每一个tiles的目标码率(可以是下载的，也可以是重建的)。文章主要的贡献就是：<br>
 1. 对每一个segments，使用tiles来训练超分网络
 2. 建立一个QoE模型，使用贪心算法求解得到每一个segments中对应的下载tiles子集和重构tiles子集(其中包括每一个tiles分辨率)
+
+算法的结果其实是很依赖于viewport的预测的，对于viewport概率高的tile，会导致网络资源或计算资源像少数的几个tiles倾斜，导致视频整体的质量不高(视频的平滑度)，特别是作者还划分了200个tiles。
 
 <br>
 感兴趣的可以[阅读原文](https://www3.cs.stonybrook.edu/~arbhattachar/assets/pdf/infocom20b.pdf)
