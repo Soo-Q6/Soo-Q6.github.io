@@ -49,5 +49,6 @@ _zip
 /stats.json
 docs
 _site
+.jekyll-cache
 #<removed>
 #loading/_posts/*
