@@ -36,7 +36,7 @@ keywords:              []
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
-logo:                  /assets/icons/icon.png
+logo:                  /assets/icons/icon.jpg
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
@@ -79,7 +79,7 @@ paginate_path:         /page-:num/
 # ========================================================================================
 
 # Sidebar image and theme color of the site.
-accent_image:          /assets/img/page.jpg
+accent_image:          /assets/img/blue.jpg
 accent_color:          rgb(110,110,112)
 
 # This is used for the `theme-color` meta tag,
